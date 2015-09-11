@@ -1,15 +1,26 @@
+/* 
+
+FILE DESCRIPTION
+
+This is the Window class c++ implantation.
+
+*/
+
 #include "Window.h"
 #include "SimpleErrors.h"
+
+
 Window::Window()
 {
-	//  empty
-}
-Window::~Window()
-{
-	// empty
+	//  Empty
 }
 
-bool Window::init(int width, int height, char* title /* = default*/)
+Window::~Window()
+{
+	// Empty
+}
+
+bool Window::init(int width, int height, char* title /* =  DEFAULT_TITLE*/)
 {
 	if (isInitialized())
 	{
@@ -56,7 +67,7 @@ void Window::update()
 
 void Window::setWindowClose()
 {
-	glfwSetWindowShouldClose(m_window, GL_TRUE);
+	glfwSetWindowShouldClose(m_window, GL_TRUE); ///< set the Window state to should close.
 	Debug_Log("Window is set to close.");
 }
 

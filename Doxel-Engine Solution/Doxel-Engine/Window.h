@@ -1,3 +1,13 @@
+/*
+
+FILE DESCRIPTION
+
+This is the Window class header.
+
+The Window class is a simple wraper for most of the GLFW libary calls.
+
+*/
+
 #pragma once
 #include <GLFW\glfw3.h>
 #include "FpsCounter.h"
@@ -14,27 +24,29 @@ public:
 Window(); ///<  empty.
 ~Window(); ///< empty.
 
-bool init(int width , int height , char* title = DEFAULT_TITLE); // Init the window, will return true if successful.
-bool isInitialized() { return m_window != nullptr; }
+bool init(int width , int height , char* title = DEFAULT_TITLE); // Initlialize the window, will return true if successful. If no title is given at function call, it will use the DEFAULT_TITLE, "Doxel Engine".
+bool isInitialized() { return m_window != nullptr; } // Checks if the GLFWwindow is already initlialized.
 
 void destroy(); ///< Destroy the window.
 
-void update(); ///< to be called at the end of every frame.
+void update(); ///< To be called at the end of every frame.
 
-void setWindowClose(); // call it when you want to make the window close.
-bool shouldWindowClose(); // can be used as the boolean for the game loop.
+/// Setters
+void setWindowClose(); // Call it when you want to make the window close.
+bool shouldWindowClose(); // Can be used as the boolean for the game loop.
 
-double getTimePerFrame() { return m_currentTimePerFrame; } // returns avarage time for each frame in the last second.
-double getFramesPerSecond() { return 1000.0 / m_currentTimePerFrame; } // returns number of frames for the last second.
+/// Getters
+double getTimePerFrame() { return m_currentTimePerFrame; } // Returns avarage time for each frame in the last second.
+double getFramesPerSecond() { return 1000.0 / m_currentTimePerFrame; } // Returns number of frames for the last second.
+GLFWwindow* getWindowHandler() { return m_window; } // Returns a GLFWwindow pointer.
 
-GLFWwindow* getWindowHandler() { return m_window; }
 
 private:
 FpsCounter m_fpsCounter;
 GLFWwindow* m_window = nullptr;
-int m_width, m_height;
+int m_width = 0, m_height = 0;
 char* m_title;
-double m_currentTimePerFrame;
+double m_currentTimePerFrame = 0;
 
 
 
