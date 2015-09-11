@@ -1,3 +1,12 @@
+/*
+
+FILE DESCRIPTION
+
+This is a test file to test the engine features, and demonstrate a simple use of them.
+
+*/
+
+
 #include "Window.h"
 #include "SimpleErrors.h"
 
