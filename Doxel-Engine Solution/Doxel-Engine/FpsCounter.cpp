@@ -1,3 +1,11 @@
+/*
+
+FILE DESCRIPTION
+
+This is a C++ code file counting FPS.
+
+*/
+
 #include "FpsCounter.h"
 #include "SimpleErrors.h"
 #include <GLFW\glfw3.h>
