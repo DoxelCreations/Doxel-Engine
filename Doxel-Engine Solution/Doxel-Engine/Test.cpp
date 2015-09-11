@@ -1,30 +1,30 @@
 #include "Window.h"
 #include "SimpleErrors.h"
 
-const int WINDOW_WITDH = 1200;
-const int WINDOW_HEIGHT = 900;
+const int WINDOW_WITDH = 1200; // the window's width
+const int WINDOW_HEIGHT = 900; // the window's height
 
 
 int main()
 {
 
-	if (!glfwInit())
+	if (!glfwInit()) // Initialize glfw and check for errors.
 	{
 		Debug_Log("glfw failed to init");
 	}
 
-	Window m_window;
-	m_window.init(WINDOW_WITDH, WINDOW_HEIGHT, "Test Window");
+	Window m_window; // Create a window.
+	m_window.init(WINDOW_WITDH, WINDOW_HEIGHT, "Test Window"); // Initialize the window.
 
-	while (!m_window.shouldWindowClose())
+	while (!m_window.shouldWindowClose()) // The game loop.
 	{
-		if (glfwGetKey(m_window.getWindowHandler(), GLFW_KEY_ESCAPE))
+		if (glfwGetKey(m_window.getWindowHandler(), GLFW_KEY_ESCAPE)) // Get input.
 		{
-			m_window.setWindowClose();
+			m_window.setWindowClose(); // Close the window if you press the escape button.
 		}
-		Debug_Log(m_window.getFramesPerSecond());
+		Debug_Log(m_window.getFramesPerSecond()); // Log the fps.
 
-		m_window.update();
+		m_window.update(); // Update the window.
 	}
 
 
