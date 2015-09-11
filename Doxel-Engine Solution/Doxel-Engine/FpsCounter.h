@@ -1,5 +1,7 @@
 #pragma once
 
+// The header file of the FpsCounter class
+
 class FpsCounter
 {
 public:
