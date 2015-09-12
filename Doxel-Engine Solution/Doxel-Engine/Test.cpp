@@ -4,16 +4,19 @@ FILE DESCRIPTION
 
 This is a test file to test the engine features, and demonstrate a simple use of them.
 
+Note: Always include gl/glew before glfw/glfw3 for forward declaration magic that happends in gl/glew.
+that means that Vertex.h should be included before Window.h.
+
 */
 
 
+#include "Vertex.h" 
 #include "Window.h"
 #include "SimpleErrors.h"
 #include "InputManager.h"
-#include "Vertex.h"
 
-const int WINDOW_WITDH = 1920; // the window's width
-const int WINDOW_HEIGHT = 1200; // the window's height
+const int WINDOW_WITDH = 1200; // the window's width
+const int WINDOW_HEIGHT = 900; // the window's height
 
 
 int main()
@@ -31,7 +34,7 @@ int main()
 	InputManager m_inputManager;
 	m_inputManager.init(m_window.getWindowHandler());
 
-	Vertex
+	
 
 	while (!m_window.shouldWindowClose()) // The game loop.
 	{
