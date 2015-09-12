@@ -76,13 +76,16 @@
   <ItemGroup>
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="SimpleErrors.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

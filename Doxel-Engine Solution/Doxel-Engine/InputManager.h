@@ -4,6 +4,7 @@
 #include <glm\vec2.hpp>
 #include <GLFW\glfw3.h>
 #include "Window.h"
+
 enum KEYS
 {
 	A, B, C, D, E, F, f, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,

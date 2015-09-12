@@ -1,5 +1,5 @@
 // This is the simple vertex shader.
-// The shaders will be written in the glsl language. 
+// The shaders will be written in the glsl. 
 
 #version 330 core // define the glsl version we are going to use, in this case 330 (TODO: check if need to change to more advance or simpler version).
 
