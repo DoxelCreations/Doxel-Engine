@@ -13,7 +13,7 @@ The Window class is a simple wraper for most of the GLFW libary calls.
 #include "FpsCounter.h"
 
 
-#define DEFAULT_TITLE "Doxel Engine"
+#define DEFAULT_TITLE "Doxel Engine" ///< default title for the window.
 #define DEFAULT_WINDOW_WIDTH 800
 #define DEFAULT_WINDOW_HEIGHT 600
 
