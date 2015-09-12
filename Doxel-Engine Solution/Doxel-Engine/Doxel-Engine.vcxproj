@@ -75,11 +75,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FpsCounter.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FpsCounter.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="SimpleErrors.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
