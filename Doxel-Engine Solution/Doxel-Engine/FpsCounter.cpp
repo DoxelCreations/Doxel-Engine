@@ -13,12 +13,12 @@ This is a C++ code file counting FPS.
 
 FpsCounter::FpsCounter()
 {
-
+	// Empty
 }
 
 FpsCounter::~FpsCounter()
 {
-
+	// Empty
 }
 void FpsCounter::start()
 {
