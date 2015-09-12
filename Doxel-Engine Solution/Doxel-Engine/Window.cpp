@@ -33,6 +33,7 @@ bool Window::init(int width, int height, char* title /* =  DEFAULT_TITLE*/)
 	m_title = title;
 
 	m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
+
 	if (isInitialized())
 	{
 		glfwMakeContextCurrent(m_window); ///< set the current window to have context
@@ -40,6 +41,7 @@ bool Window::init(int width, int height, char* title /* =  DEFAULT_TITLE*/)
 		m_fpsCounter.start();
 		return true;
 	}
+
 	else
 	{
 		Debug_Log("Window " << m_title << " has failed to initialize.");
@@ -60,7 +62,7 @@ void Window::destroy()
 
 void Window::update()
 {
-	m_currentTimePerFrame = m_fpsCounter.end();
+	m_currentTimePerFrame = m_fpsCounter.end(); ///< set tpf to its value.
 	glfwSwapBuffers(m_window); ///< swap the buffers for the next frame
 	glfwPollEvents(); ///< poll current events for the input manager
 }

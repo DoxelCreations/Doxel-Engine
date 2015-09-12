@@ -6,11 +6,13 @@
 #include "SimpleErrors.h"
 Shader::Shader()
 {
+	// empty
 }
 
 
 Shader::~Shader()
 {
+	// empty
 }
 
 GLuint Shader::LoadShaders(const char * vertex_file_path, const char * fragment_file_path)
