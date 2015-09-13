@@ -22,9 +22,9 @@ void InputManager::init(GLFWwindow *window)
 void InputManager::update()
 {
 	// Loop throug _keyMap using a for each loop, and copy it over to _previousKeyMap
-	for (auto& it : _keyMap)
+	for (auto& it : m_keyMap)
 	{
-		_previousKeyMap[it.first] = it.second;
+		m_previousKeyMap[it.first] = it.second;
 	}
 	updateMouse();
 	updateKeys();
@@ -499,32 +499,19 @@ void InputManager::updateMouse()
 }
 void InputManager::pressKey(unsigned int keyID)
 {
-	_keyMap[keyID] = true;
+	m_keyMap[keyID] = true;
 
 }
 void InputManager::releaseKey(unsigned int keyID)
 {
-	_keyMap[keyID] = false;
+	m_keyMap[keyID] = false;
 
 }
 
-bool InputManager::isKeyDown(unsigned int keyID)
-{
-	auto it = _keyMap.find(keyID);
-	if (it != _keyMap.end())
-	{
-		return it->second;
-	}
-
-	else
-	{
-		return false;
-	}
-}
 
 bool InputManager::isKeyPressed(unsigned int keyID)
 {
-	// Check if it is pressed this frame, and not the last one
+	// Check if it is pressed this frame, and not the last one.
 	if (isKeyDown(keyID) == true && wasKeyDown(keyID) == false)
 	{
 		return true;
@@ -532,10 +519,35 @@ bool InputManager::isKeyPressed(unsigned int keyID)
 	return false;
 }
 
+bool InputManager::isKeyHeldDown(unsigned int keyID)
+{
+	// Check if it is pressed this frame, and the last one too.
+	if (isKeyDown(keyID) == true && wasKeyDown(keyID) == true)
+	{
+		return true;
+	}
+	return false;
+}
+
+
+bool InputManager::isKeyDown(unsigned int keyID)
+{
+	auto it = m_keyMap.find(keyID);
+	if (it != m_keyMap.end())
+	{
+		return it->second;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
 bool InputManager::wasKeyDown(unsigned int keyID)
 {
-	auto it = _previousKeyMap.find(keyID);
-	if (it != _previousKeyMap.end())
+	auto it = m_previousKeyMap.find(keyID);
+	if (it != m_previousKeyMap.end())
 	{
 		return it->second;
 	}

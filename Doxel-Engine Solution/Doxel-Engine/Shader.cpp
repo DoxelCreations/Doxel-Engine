@@ -23,6 +23,7 @@ GLuint Shader::LoadShaders(const char * vertex_file_path, const char * fragment_
 	std::ifstream VertexShaderStream(vertex_file_path, std::ios::in);
 	if (VertexShaderStream.is_open())
 	{
+		Debug_Log("reading vertex Shader");
 		std::string Line = "";
 		while (getline(VertexShaderStream, Line))
 		{
@@ -30,11 +31,14 @@ GLuint Shader::LoadShaders(const char * vertex_file_path, const char * fragment_
 		}
 		VertexShaderStream.close();
 	}
+	
 
 	// Read the Fragment Shader code from the file
 	std::string FragmentShaderCode;
 	std::ifstream FragmentShaderStream(fragment_file_path, std::ios::in);
-	if (FragmentShaderStream.is_open()){
+	if (FragmentShaderStream.is_open())
+	{
+		Debug_Log("reading Fragment Shader");
 		std::string Line = "";
 		while (getline(FragmentShaderStream, Line))
 		{
@@ -97,7 +101,7 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
 	fprintf(stdout, "%s\n", &ProgramErrorMessage[0]);
 
-
+	// Delete the shaders, there is no more use for them
 	glDeleteShader(VertexShaderID);
 	glDeleteShader(FragmentShaderID);
 
