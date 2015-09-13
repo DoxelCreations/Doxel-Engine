@@ -7,7 +7,7 @@
 in vec3 vertPos; // this is the position vector the shader gets from each of the vertecies.
 in vec3 vertColor; // this is the color vector the shader gets from each of the vertecies (TODO: decide if we do RGB or RGBA for this shader).
 
-/* possible addition: "in vec2 texCoord" for texture mapping on the vertecies.*/
+// possible addition: "in vec2 texCoord" for texture mapping on the vertecies.
 
 // UNIFORMS
 uniform mat4 model; 
@@ -15,7 +15,7 @@ uniform mat4 view;
 uniform mat4 projection;
 
 // OUT
-out vec4 outColor // this is the color that goes to the fragment shader.
+out vec4 outColor; // this is the color that goes to the fragment shader.
 
 void main () // The main function of the shader.
 {
