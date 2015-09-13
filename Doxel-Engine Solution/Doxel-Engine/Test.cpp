@@ -22,7 +22,7 @@ const int WINDOW_HEIGHT = 900; // the window's height
 int main()
 {
 
-
+	
 	if (!glfwInit()) // Initialize glfw and check for errors.
 	{
 		Debug_Log("glfw failed to init");
@@ -31,7 +31,7 @@ int main()
 	Window m_window; // Create a window.
 	m_window.init(WINDOW_WITDH, WINDOW_HEIGHT); // Initialize the window.
 
-	if (!glewInit()) // Initialize glew and check for errors, please note that you must init glew after creating a window and initializing it, and before using any gl calls.
+	if (glewInit()) // Initialize glew and check for errors, please note that you must init glew after creating a window and initializing it, and before using any gl calls.
 	{
 		Debug_Log("glew failed to init");
 	}
