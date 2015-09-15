@@ -14,7 +14,7 @@ that means that Vertex.h should be included before Window.h.
 #include "Window.h"
 #include "SimpleErrors.h"
 #include "InputManager.h"
-#include "Shader.h"
+#include "GLProgram.h"
 const int WINDOW_WITDH = 1200; // the window's width
 const int WINDOW_HEIGHT = 900; // the window's height
 
@@ -39,9 +39,14 @@ int main()
 	InputManager m_inputManager; // Create an input manager object
 	m_inputManager.init(m_window.getWindowHandler()); // Init it
 
-	Shader m_shaderTest; // Create a shader object for debug purposes
-	m_shaderTest.LoadShaders("Shaders/Shader.vert", "Shaders/Shader.frag"); // test if the shaders compile
+	GLProgram m_program;// Create a GLProgram object for debug purposes
+	m_program.loadShaders("Shaders/shader.vert", "Shaders/Shader.frag"); // test if the shaders compile
 
+	// some tests to see that everything works correctly
+	Debug_Log("the location of vertPos attribute in the shader is " << glGetAttribLocation(m_program.getID(), "vertPos")); 
+	Debug_Log("the location of vertColor attribute in the shader is " << glGetAttribLocation(m_program.getID(), "vertColor")); 
+
+	// expected output is vertPos location = 0 and vertColor location = 1, just as specified in the shader.
 
 	while (!m_window.shouldWindowClose()) // The game loop.
 	{
