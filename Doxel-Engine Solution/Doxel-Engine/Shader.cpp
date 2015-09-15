@@ -2,7 +2,7 @@
 
 FILE DESCRIPTION
 
-
+Shader loading function implantation.
 
 */
 
@@ -22,12 +22,23 @@ Shader::~Shader()
 {
 	// empty
 }
+/*
 
-GLuint Shader::LoadShaders(const char * vertex_file_path, const char * fragment_file_path)
+This function loads the shader from a file.
+
+Input:
+	- const char* vertexFilePath - the pathway to the file that contains the vertex shader file, from the project folder.
+	- const char* fragmentFilePath - the pathway to the file that contains the fragment shader file, from the project folder.
+
+Output:
+	- GLuint - returns the glsl program id that uses the shaders.
+
+*/
+GLuint Shader::LoadShaders(const char * vertexFilePath, const char * fragmentFilePath)
 {
 	// Read the Vertex Shader code from the file into a buffer
 	std::string VertexShaderCode;
-	std::ifstream VertexShaderStream(vertex_file_path, std::ios::in);
+	std::ifstream VertexShaderStream(vertexFilePath, std::ios::in);
 	if (VertexShaderStream.is_open())
 	{
 		Debug_Log("reading vertex Shader");
@@ -41,7 +52,7 @@ GLuint Shader::LoadShaders(const char * vertex_file_path, const char * fragment_
 
 	// Read the Fragment Shader code from the file
 	std::string FragmentShaderCode;
-	std::ifstream FragmentShaderStream(fragment_file_path, std::ios::in);
+	std::ifstream FragmentShaderStream(fragmentFilePath, std::ios::in);
 	if (FragmentShaderStream.is_open())
 	{
 		Debug_Log("reading Fragment Shader");
@@ -55,7 +66,18 @@ GLuint Shader::LoadShaders(const char * vertex_file_path, const char * fragment_
 
 	return (LoadShadersFromSource(VertexShaderCode.c_str(), FragmentShaderCode.c_str()));
 }
+/*
 
+This function loads the shader from a file.
+
+Input:
+	- const char* vertexSource - the code of the vertex shader  as a char*.
+	- const char* fragmentSource - the code of the fragment shader  as a char*.
+
+Output:
+	- GLuint - returns the glsl program id that uses the shaders.
+
+*/
 GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragmentSource)
 {
 	// Create the shaders

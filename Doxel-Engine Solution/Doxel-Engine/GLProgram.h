@@ -27,14 +27,29 @@ class GLProgram
 		void use(); // use the program and all of it attributes
 		void unuse(); // unuse the program and all of it attributes
 
-		void addAttribute(const char* attribName, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer); //  add an attribute to the glsl program.
-		// give it the name it uses in the shader, the size as in sizeof(attrib in the vertex), GL_TRUE if you want it to normalize the values to be between 0 to 1, the stride between every occurance in the vertex data, a pointer to the first occurance.
-
-		void deleteProgram() { if (m_programID) glDeleteProgram(m_programID); } // deletes the program, call it when you dont need the program anymore.
-		GLuint getID() { return m_programID; } // get the program id.
+		void addAttribute(const char* attribName, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer); 
+		/*
+		This function deletes this glsl program, call it when you dont need the program anymore.
+		*/
+		void deleteProgram() { if (m_programID) glDeleteProgram(m_programID); } 
+		/*
+		This function return the id of the program
+		Output:
+			- GLuint - the id of the glsl program.
+		*/
+		GLuint getID() { return m_programID; } 
 
 		void uploadUniformMatrix(char* name, int num, glm::mat4 &mat, GLboolean transpose); // upload a uniform matrix to the shader.
-		GLint getUniformLocation(char* name) { return glGetUniformLocation(m_programID, name); } // get the uniform location the shader.
+		/*
+		this function gets the uniform location in the shader
+
+		Input:
+			- char* name - the name of the uniform in the shader.
+		
+		Output:
+			- GLint - the location of the uniform in the shader.
+		*/
+		GLint getUniformLocation(char* name) { return glGetUniformLocation(m_programID, name); } 
 
 
 

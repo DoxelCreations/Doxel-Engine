@@ -37,9 +37,18 @@ void setWindowClose();///< Call it when you want to make the window close.
 bool shouldWindowClose(); ///< Can be used as the boolean for the game loop.
 
 /// Getters
-double getTimePerFrame() { return m_currentTimePerFrame; } ///< Returns avarage time for each frame in the last second.
-double getFramesPerSecond() { return 1000.0 / m_currentTimePerFrame; } ///< Returns number of frames for the last second.
-GLFWwindow* getWindowHandler() { return m_window; } ///< Returns a GLFWwindow pointer.
+/*
+returns the time it took each frame to render
+*/
+double getTimePerFrame() { return m_currentTimePerFrame; }
+/*
+returns the fps.
+*/
+double getFramesPerSecond() { return 1000.0 / m_currentTimePerFrame; } 
+/*
+returns the GLFWwindow pointer
+*/
+GLFWwindow* getWindowHandler() { return m_window; } 
 
 
 private:

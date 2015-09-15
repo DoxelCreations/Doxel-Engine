@@ -37,7 +37,13 @@ public:
 	//setters
 
 	//getters
+	/*
+	returns the current position of the mouse
+	*/
 	glm::vec2 getCurrentMouseCoords() const { return m_currentMouseCoords; }
+	/*
+	returns the last frame position of the mouse
+	*/
 	glm::vec2 getlastMouseCoords() const { return m_lastMouseCoords; }
 
 
