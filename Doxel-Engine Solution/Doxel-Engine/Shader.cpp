@@ -1,14 +1,22 @@
+/*
+
+FILE DESCRIPTION
+
+
+
+*/
+
 #include "Shader.h"
 #include <string>
 #include <vector>
 #include <fstream>
 #include <algorithm>
 #include "SimpleErrors.h"
+
 Shader::Shader()
 {
 	// empty
 }
-
 
 Shader::~Shader()
 {
@@ -17,7 +25,6 @@ Shader::~Shader()
 
 GLuint Shader::LoadShaders(const char * vertex_file_path, const char * fragment_file_path)
 {
-
 	// Read the Vertex Shader code from the file into a buffer
 	std::string VertexShaderCode;
 	std::ifstream VertexShaderStream(vertex_file_path, std::ios::in);
@@ -31,7 +38,6 @@ GLuint Shader::LoadShaders(const char * vertex_file_path, const char * fragment_
 		}
 		VertexShaderStream.close();
 	}
-	
 
 	// Read the Fragment Shader code from the file
 	std::string FragmentShaderCode;
@@ -47,13 +53,11 @@ GLuint Shader::LoadShaders(const char * vertex_file_path, const char * fragment_
 		FragmentShaderStream.close();
 	}
 
-
 	return (LoadShadersFromSource(VertexShaderCode.c_str(), FragmentShaderCode.c_str()));
 }
 
 GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragmentSource)
 {
-
 	// Create the shaders
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
@@ -66,7 +70,6 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	char const * VertexSourcePointer = vertexSource;
 	glShaderSource(VertexShaderID, 1, &VertexSourcePointer, NULL);
 	glCompileShader(VertexShaderID);
-
 	// Check Vertex Shader
 	glGetShaderiv(VertexShaderID, GL_COMPILE_STATUS, &Result);
 	glGetShaderiv(VertexShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
@@ -79,7 +82,6 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	char const * FragmentSourcePointer = fragmentSource;
 	glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer, NULL);
 	glCompileShader(FragmentShaderID);
-
 	// Check Fragment Shader
 	glGetShaderiv(FragmentShaderID, GL_COMPILE_STATUS, &Result);
 	glGetShaderiv(FragmentShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
@@ -88,7 +90,7 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	fprintf(stdout, "%s\n", &FragmentShaderErrorMessage[0]);
 
 	// Link the program
-	fprintf(stdout, "Linking program\n");
+	Debug_Log("Linking program");
 	GLuint ProgramID = glCreateProgram();
 	glAttachShader(ProgramID, VertexShaderID);
 	glAttachShader(ProgramID, FragmentShaderID);
@@ -106,5 +108,4 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	glDeleteShader(FragmentShaderID);
 
 	return ProgramID;
-
 }

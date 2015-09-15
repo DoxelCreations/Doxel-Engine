@@ -25,13 +25,11 @@ struct Color8 // the color struct
 	
 	Color8(GLubyte R, GLubyte G, GLubyte B) : // the contructor for color to set to a specific color
 		r(R), g(G), b(B) { /*Empty*/ }
-
 };
 
 struct TexCoord // the tex coordinations struct
 {
 	float x, y;
-
 };
 
 
@@ -56,5 +54,4 @@ struct Vertex // the vertex struct, combines all the previus structs.
 		texCoord.x = tex.x;
 		texCoord.y = tex.y;
 	}
-	
 };
