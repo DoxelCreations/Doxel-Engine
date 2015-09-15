@@ -4,8 +4,8 @@
 #version 330 core // define the glsl version we are going to use, in this case 330 (TODO: check if need to change to more advance or simpler version).
 
 // IN
-in vec3 vertPos; // this is the position vector the shader gets from each of the vertecies.
-in vec3 vertColor; // this is the color vector the shader gets from each of the vertecies (TODO: decide if we do RGB or RGBA for this shader).
+layout (location = 0) in vec3 vertPos; // this is the position vector the shader gets from each of the vertecies.
+layout (location = 1) in vec3 vertColor; // this is the color vector the shader gets from each of the vertecies (TODO: decide if we do RGB or RGBA for this shader).
 
 // possible addition: "in vec2 texCoord" for texture mapping on the vertecies.
 
