@@ -9,20 +9,17 @@ that means that Vertex.h should be included before Window.h.
 
 */
 
-
 #include "Vertex.h" 
 #include "Window.h"
 #include "SimpleErrors.h"
 #include "InputManager.h"
 #include "GLProgram.h"
+
 const int WINDOW_WITDH = 1200; // the window's width
 const int WINDOW_HEIGHT = 900; // the window's height
 
-
 int main()
 {
-
-	
 	if (!glfwInit()) // Initialize glfw and check for errors.
 	{
 		Debug_Log("glfw failed to init");
@@ -40,12 +37,11 @@ int main()
 	m_inputManager.init(m_window.getWindowHandler()); // Init it
 
 	GLProgram m_program;// Create a GLProgram object for debug purposes
-	m_program.loadShaders("Shaders/shader.vert", "Shaders/Shader.frag"); // test if the shaders compile
+	m_program.loadShaders("Shaders/Shader.vert", "Shaders/Shader.frag"); // test if the shaders compile
 
 	// some tests to see that everything works correctly
 	Debug_Log("the location of vertPos attribute in the shader is " << glGetAttribLocation(m_program.getID(), "vertPos")); 
 	Debug_Log("the location of vertColor attribute in the shader is " << glGetAttribLocation(m_program.getID(), "vertColor")); 
-
 	// expected output is vertPos location = 0 and vertColor location = 1, just as specified in the shader.
 
 	while (!m_window.shouldWindowClose()) // The game loop.
@@ -61,7 +57,6 @@ int main()
 
 		m_window.update(); // Update the window.
 	}
-
 
 	return 0;
 }
