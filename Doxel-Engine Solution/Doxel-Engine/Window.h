@@ -18,6 +18,7 @@ The Window class is a simple wraper for most of the GLFW libary calls.
 #define DEFAULT_WINDOW_HEIGHT 600
 
 
+
 class Window
 {
 public:

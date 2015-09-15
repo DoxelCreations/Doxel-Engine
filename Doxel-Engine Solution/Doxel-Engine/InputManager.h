@@ -4,6 +4,7 @@
 #include <glm\vec2.hpp>
 #include <GLFW\glfw3.h>
 #include "Window.h"
+
 enum KEYS
 {
 	A, B, C, D, E, F, f, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
@@ -26,11 +27,12 @@ public:
 	void pressKey(unsigned int keyID);
 	void releaseKey(unsigned int keyID);
 
-	/// Returns true if the key is held down
-	bool isKeyDown(unsigned int keyID);
-
-	/// Returns true if the key was just pressed
+	
+	/// Returns true if the key is pressed now, but was not before.
 	bool isKeyPressed(unsigned int keyID);
+
+	/// return true if the key is pressed now and was pressed before.
+	bool isKeyHeldDown(unsigned int keyID);
 
 	//setters
 
@@ -41,13 +43,15 @@ public:
 
 
 private:
-	/// Returns true if the key is held down
+	/// Returns true if the key is down.
+	bool isKeyDown(unsigned int keyID);
+	/// Returns true if the key was down.
 	bool wasKeyDown(unsigned int keyID);
 	void updateKeys();
 	void updateMouse();
 	
-	std::unordered_map<unsigned int, bool> _keyMap;
-	std::unordered_map<unsigned int, bool> _previousKeyMap;
+	std::unordered_map<unsigned int, bool> m_keyMap;
+	std::unordered_map<unsigned int, bool> m_previousKeyMap;
 
 	glm::vec2 m_currentMouseCoords;
 	glm::vec2 m_lastMouseCoords;
