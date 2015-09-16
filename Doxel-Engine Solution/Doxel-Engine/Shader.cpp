@@ -76,7 +76,7 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	std::vector<char> VertexShaderErrorMessage(InfoLogLength);
 	glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]);
 	fprintf(stdout, "%s\n", &VertexShaderErrorMessage[0]);
-	Debug_Log("Vertex shader compiled.\n")
+	Debug_Log("Vertex shader compiled.\n");
 
 
 	// Compile Fragment Shader
@@ -90,7 +90,7 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	std::vector<char> FragmentShaderErrorMessage(InfoLogLength);
 	glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
 	fprintf(stdout, "%s\n", &FragmentShaderErrorMessage[0]);
-	Debug_Log("Fragment shader compiled.\n")
+	Debug_Log("Fragment shader compiled.\n");
 
 	// Link the program
 	Debug_Log("Linking program");

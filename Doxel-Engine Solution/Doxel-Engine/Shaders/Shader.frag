@@ -6,5 +6,6 @@ out vec4 fragColor; // this is the output color we get out of the fragment shade
  
 void main()
 {
-    fragColor = outColor; // set the fragColor to be outColor.	
+   // fragColor = outColor; // set the fragColor to be outColor.	
+   fragColor = vec4(1.0,0.0,0.0,1.0);
 }
