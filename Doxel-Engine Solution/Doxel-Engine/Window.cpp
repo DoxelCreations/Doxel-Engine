@@ -19,6 +19,7 @@ Window::~Window()
 {
 	// Empty
 }
+
 /*
 
 This function initialize the window.
@@ -32,8 +33,6 @@ Output:
 	- bool - will return true when the window was created, otherwise will return false.
 
 */
-
-
 bool Window::init(int width, int height, char* title /* =  DEFAULT_TITLE*/)
 {
 	if (isInitialized())
@@ -65,6 +64,7 @@ bool Window::init(int width, int height, char* title /* =  DEFAULT_TITLE*/)
 
 	
 }
+
 /*
 
 This function destroys the window.
@@ -90,6 +90,7 @@ void Window::update()
 	glfwSwapBuffers(m_window); ///< swap the buffers for the next frame
 	glfwPollEvents(); ///< poll current events for the input manager
 }
+
 /*
 
 This function set the window to close.
@@ -101,6 +102,7 @@ void Window::setWindowClose()
 	glfwSetWindowShouldClose(m_window, GL_TRUE); ///< set the Window state to should close.
 	Debug_Log("Window is set to close.");
 }
+
 /*
 
 This function checks if the window needs to close.

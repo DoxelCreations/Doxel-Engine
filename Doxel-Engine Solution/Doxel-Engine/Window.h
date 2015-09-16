@@ -46,6 +46,10 @@ returns the fps.
 */
 double getFramesPerSecond() { return 1000.0 / m_currentTimePerFrame; } 
 /*
+returns the window title as a char*.
+ */
+char* getTitle() { return m_title; }
+/*
 returns the GLFWwindow pointer
 */
 GLFWwindow* getWindowHandler() { return m_window; } 

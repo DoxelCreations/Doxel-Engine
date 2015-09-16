@@ -634,5 +634,3 @@ bool InputManager::wasKeyDown(unsigned int keyID)
 		return false;
 	}
 }
-
-
