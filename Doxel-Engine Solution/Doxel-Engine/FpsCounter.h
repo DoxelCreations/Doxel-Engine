@@ -16,9 +16,22 @@ class FpsCounter
 public:
 	FpsCounter();
 	~FpsCounter();
+	/*
 
-	void start(); // call start before the game loop.
-	double end(); // at the end of every frame call end, it will return how many milliseconds past per frame.
+	This function start the fps counter.
+	should be called when you want to start tracking the fps
+
+	*/
+	void start(); 
+	/*
+
+	This function check the current fps and returns it.
+
+	Output:
+	- double - returns how much time it took each frame to render in avrage in the last second.
+
+	*/
+	double end(); 
 
 private:
 	double m_currentTime, m_lastTime, m_lastMilliPerFrame;

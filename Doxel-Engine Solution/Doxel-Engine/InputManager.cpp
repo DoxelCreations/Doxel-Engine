@@ -13,23 +13,11 @@ InputManager::~InputManager()
 	// Empty
 }
 
-/*
-
-This function initialize the input manager.
-
-Input:
-	- GLFWwindow *window - a pointer to the GLFWwindow you want to read input from.
-	
-*/
 void InputManager::init(GLFWwindow *window)
 {
 	m_window = window;
 }
-/*
 
-This function updates the input manager.
-Should be called at the beginning of every game loop cycle.
-*/
 void InputManager::update()
 {
 	// Loop throug _keyMap using a for each loop, and copy it over to _previousKeyMap
@@ -41,11 +29,7 @@ void InputManager::update()
 	updateKeys();
 }
 
-/*
 
-This function update the keys state.
-
-*/
 void InputManager::updateKeys()
 {
 	if (glfwGetKey(m_window, GLFW_KEY_0) == GLFW_PRESS)
@@ -506,11 +490,7 @@ void InputManager::updateKeys()
 
 }
 
-/*
 
-This function update the mouse position.
-
-*/
 void InputManager::updateMouse()
 {
 	m_lastMouseCoords = m_currentMouseCoords;
@@ -519,44 +499,21 @@ void InputManager::updateMouse()
 	m_currentMouseCoords.x = (float)x;
 	m_currentMouseCoords.y = (float)y;
 }
-/*
 
-This function change the state of a specific key to pressed.
 
-Input:
-	- unsinged int keyID - the id of the key you want to press. Should use the enum KEYS
-
-*/
 void InputManager::pressKey(unsigned int keyID)
 {
 	m_keyMap[keyID] = true;
 
 }
-/*
 
-This function change the state of a specific key to relesed.
-
-Input:
-	- unsinged int keyID - the id of the key you want to relese. Should use the enum KEYS
-
-*/
 void InputManager::releaseKey(unsigned int keyID)
 {
 	m_keyMap[keyID] = false;
 
 }
 
-/*
 
-This function checks if the state of a specific key is pressed this frame and not the last one.
-
-Input:
-	- unsinged int keyID - the id of the key you want to check. Should use the enum KEYS
-
-Output:
-	- bool - returns true if the key is pressed now and not before. returns false if not.
-		 
-*/
 bool InputManager::isKeyPressed(unsigned int keyID)
 {
 	// Check if it is pressed this frame, and not the last one.
@@ -566,17 +523,7 @@ bool InputManager::isKeyPressed(unsigned int keyID)
 	}
 	return false;
 }
-/*
 
-This function checks if the state of a specific key is pressed this frame and the last one.
-
-Input:
-- unsinged int keyID - the id of the key you want to check. Should use the enum KEYS
-
-Output:
-- bool - returns true if the key is pressed now and was before. returns false if not.
-
-*/
 bool InputManager::isKeyHeldDown(unsigned int keyID)
 {
 	// Check if it is pressed this frame, and the last one too.
@@ -587,17 +534,7 @@ bool InputManager::isKeyHeldDown(unsigned int keyID)
 	return false;
 }
 
-/*
 
-This function checks if the state of a specific key is pressed this frame.
-
-Input:
-- unsinged int keyID - the id of the key you want to check. Should use the enum KEYS
-
-Output:
-- bool - returns true if the key is pressed now. returns false if not.
-
-*/
 bool InputManager::isKeyDown(unsigned int keyID)
 {
 	auto it = m_keyMap.find(keyID);
@@ -611,17 +548,7 @@ bool InputManager::isKeyDown(unsigned int keyID)
 	}
 }
 
-/*
 
-This function checks  the state of a specific key in the last frame.
-
-Input:
-- unsinged int keyID - the id of the key you want to check. Should use the enum KEYS
-
-Output:
-- bool - returns true if the key was pressed last frame. returns false if not.
-
-*/
 bool InputManager::wasKeyDown(unsigned int keyID)
 {
 	auto it = m_previousKeyMap.find(keyID);

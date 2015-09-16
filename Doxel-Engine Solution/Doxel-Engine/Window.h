@@ -25,15 +25,54 @@ public:
 Window(); ///<  empty.
 ~Window(); ///< empty.
 
+/*
+
+This function initialize the window.
+
+Input:
+- int width - the width of the wanted window.
+- int height - the height of the wanted window.
+- char* title - the title of the wanted window, the default value is "Doxel Engine".
+
+Output:
+- bool - will return true when the window was created, otherwise will return false.
+
+*/
 bool init(int width , int height , char* title = DEFAULT_TITLE); ///< Initlialize the window, will return true if successful. If no title is given at function call, it will use the DEFAULT_TITLE, "Doxel Engine".
 bool isInitialized() { return m_window != nullptr; } ///< Checks if the GLFWwindow is already initlialized.
 
+/*
+
+This function destroys the window.
+Should be called when the window is no longer needed.
+
+*/
 void destroy(); ///< Destroy the window.
 
+/*
+
+This function updates the window.
+Should be called at the end of every game loop cycle.
+
+*/
 void update(); ///< To be called at the end of every frame.
 
 /// Setters
+/*
+
+This function set the window to close.
+Should be called when you want to close the window.
+
+*/
 void setWindowClose();///< Call it when you want to make the window close.
+/*
+
+This function checks if the window needs to close.
+
+Output:
+- bool - will return true if the window should close, otherwise will return false.
+
+*/
 bool shouldWindowClose(); ///< Can be used as the boolean for the game loop.
 
 /// Getters

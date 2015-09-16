@@ -20,24 +20,12 @@ FpsCounter::~FpsCounter()
 {
 	// Empty
 }
-/*
 
-This function start the fps counter.
-should be called when you want to start tracking the fps
-
-*/
 void FpsCounter::start()
 {
 	m_lastTime = glfwGetTime();
 }
-/*
 
-This function check the current fps and returns it.
-
-Output:
-	- double - returns how much time it took each frame to render in avrage in the last second.
-
-*/
 double FpsCounter::end()
 {
 	m_currentTime = glfwGetTime();
