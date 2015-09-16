@@ -74,6 +74,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera3D.cpp" />
+    <ClCompile Include="DrawBatch.cpp" />
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="GLProgram.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -82,6 +84,8 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera3D.h" />
+    <ClInclude Include="DrawBatch.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="GLProgram.h" />
     <ClInclude Include="InputManager.h" />
