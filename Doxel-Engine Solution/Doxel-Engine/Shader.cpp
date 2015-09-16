@@ -22,18 +22,7 @@ Shader::~Shader()
 {
 	// empty
 }
-/*
 
-This function loads the shader from a file.
-
-Input:
-	- const char* vertexFilePath - the pathway to the file that contains the vertex shader file, from the project folder.
-	- const char* fragmentFilePath - the pathway to the file that contains the fragment shader file, from the project folder.
-
-Output:
-	- GLuint - returns the glsl program id that uses the shaders.
-
-*/
 GLuint Shader::LoadShaders(const char * vertexFilePath, const char * fragmentFilePath)
 {
 	// Read the Vertex Shader code from the file into a buffer
@@ -66,18 +55,7 @@ GLuint Shader::LoadShaders(const char * vertexFilePath, const char * fragmentFil
 
 	return (LoadShadersFromSource(VertexShaderCode.c_str(), FragmentShaderCode.c_str()));
 }
-/*
 
-This function loads the shader from a file.
-
-Input:
-	- const char* vertexSource - the code of the vertex shader  as a char*.
-	- const char* fragmentSource - the code of the fragment shader  as a char*.
-
-Output:
-	- GLuint - returns the glsl program id that uses the shaders.
-
-*/
 GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragmentSource)
 {
 	// Create the shaders
@@ -98,6 +76,8 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	std::vector<char> VertexShaderErrorMessage(InfoLogLength);
 	glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]);
 	fprintf(stdout, "%s\n", &VertexShaderErrorMessage[0]);
+	Debug_Log("Vertex shader compiled.\n")
+
 
 	// Compile Fragment Shader
 	Debug_Log("Compiling fragment shader");
@@ -110,6 +90,7 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	std::vector<char> FragmentShaderErrorMessage(InfoLogLength);
 	glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
 	fprintf(stdout, "%s\n", &FragmentShaderErrorMessage[0]);
+	Debug_Log("Fragment shader compiled.\n")
 
 	// Link the program
 	Debug_Log("Linking program");
