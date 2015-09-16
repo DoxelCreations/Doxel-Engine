@@ -33,7 +33,7 @@ struct TexCoord // the tex coordinations struct
 };
 
 
-struct Vertex // the vertex struct, combines all the previus structs.
+struct Vertex // the vertex struct, combines all the previus structs. 
 {
 	Position position;
 	Color8   color;
@@ -55,3 +55,4 @@ struct Vertex // the vertex struct, combines all the previus structs.
 		texCoord.y = tex.y;
 	}
 };
+
