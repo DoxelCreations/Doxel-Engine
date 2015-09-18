@@ -45,6 +45,12 @@ struct Vertex // the vertex struct, combines all the previus structs.
 		position.y = pos.y;
 		position.z = pos.z;
 	}
+	void setPosition(float x, float y, float z)
+	{
+		position.x = x;
+		position.y = y;
+		position.z = z;
+	}
 	void setColor(Color8 col) // set the color to a specific color
 	{
 		color = col;
