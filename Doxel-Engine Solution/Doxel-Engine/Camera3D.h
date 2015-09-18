@@ -4,6 +4,7 @@ FILE DESCRIPTION
 
 this file contains the camera3d class header.
 
+TODO: explainations about functions and usage.
 */
 
 #pragma once
