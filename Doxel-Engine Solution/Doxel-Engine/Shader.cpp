@@ -97,6 +97,9 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	GLuint ProgramID = glCreateProgram();
 	glAttachShader(ProgramID, VertexShaderID);
 	glAttachShader(ProgramID, FragmentShaderID);
+	glBindAttribLocation(ProgramID, 0, "vertPos");
+	glBindAttribLocation(ProgramID, 1, "vertColor");
+	Debug_Log(glGetAttribLocation(ProgramID,"vertColor"));
 	glLinkProgram(ProgramID);
 	glUseProgram(ProgramID);
 	// Check the program
