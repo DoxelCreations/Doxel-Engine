@@ -73,7 +73,7 @@ int main()
 		{	
 			m_window.setWindowClose(); // Close the window if you press the escape button.
 		}
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.0f, 1.0f, 1.0f, 1.0f); // set the background color
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//Debug_Log(m_window.getFramesPerSecond()); // Log the fps, use when you need to actually check the fps
 		m_program.use();

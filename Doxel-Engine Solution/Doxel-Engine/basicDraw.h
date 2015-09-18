@@ -18,6 +18,6 @@ public:
 	//void gen
 private:
 	GLuint m_vao;
-	GLuint m_vbo
+	GLuint m_vbo;
 };
 
