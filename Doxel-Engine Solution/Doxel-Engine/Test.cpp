@@ -44,21 +44,10 @@ int main()
 	GLProgram m_program;// Create a GLProgram object for debug purposes
 	m_program.loadShaders("Shaders/Shader.vert", "Shaders/Shader.frag"); // test if the shaders compile
 
-	// some tests to see that everything works correctly
-	Debug_Log("the location of vertexPos attribute in the shader is " << glGetAttribLocation(m_program.getID(), "vertexPos")); 
-	// expected output is vertPos location = 0 and vertColor location = 1, just as specified in the shader.
-	Debug_Log("the location of vertexColor attribute in the shader is " << glGetAttribLocation(m_program.getID(), "vertexColor"));
-	
-	int v;
-	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &v);
-	Debug_Log("max vertex attribs" << v);
-
 	GLuint m_vao;
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
 
-	//GLfloat vertecies[] = {0.0f,1.0f,0.0f,	1.0f,0.0f,0.0f, 0.0f,0.0f,0.0f };
-	//Debug_Log(sizeof(vertecies));
 	Vertex verts[3];
 	verts[0].setPosition(0.0f, 1.0f, 0.0f);
 	verts[0].setColor(Color8(255, 0, 0));
