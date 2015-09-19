@@ -97,9 +97,6 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	GLuint ProgramID = glCreateProgram();
 	glAttachShader(ProgramID, VertexShaderID);
 	glAttachShader(ProgramID, FragmentShaderID);
-	glBindAttribLocation(ProgramID, 0, "vertPos");
-	glBindAttribLocation(ProgramID, 1, "vertColor");
-	Debug_Log(glGetAttribLocation(ProgramID,"vertColor"));
 	glLinkProgram(ProgramID);
 	glUseProgram(ProgramID);
 	// Check the program
@@ -108,7 +105,7 @@ GLuint Shader::LoadShadersFromSource(const char* vertexSource, const char* fragm
 	std::vector<char> ProgramErrorMessage(std::max(InfoLogLength, int(1)));
 	glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
 	fprintf(stdout, "%s\n", &ProgramErrorMessage[0]);
-
+	glUseProgram(0);
 	// Delete the shaders, there is no more use for them
 	glDeleteShader(VertexShaderID);
 	glDeleteShader(FragmentShaderID);

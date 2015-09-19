@@ -58,7 +58,6 @@ void GLProgram::addAttribute(const char* attribName, GLint size, GLenum type, GL
 	GLint attribPos = glGetAttribLocation(m_programID, attribName);
 	glEnableVertexAttribArray(attribPos);
 	glVertexAttribPointer(attribPos, size, type, normalized, stride, pointer);
-	m_numAttribs++;
 }
 
 void GLProgram::uploadUniformMatrix(char* name, int num, glm::mat4 &mat, GLboolean transpose) // upload a uniform matrix to the shader.
