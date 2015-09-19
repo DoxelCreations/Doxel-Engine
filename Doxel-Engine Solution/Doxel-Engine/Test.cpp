@@ -45,11 +45,13 @@ int main()
 	m_program.loadShaders("Shaders/Shader.vert", "Shaders/Shader.frag"); // test if the shaders compile
 
 	// some tests to see that everything works correctly
-	Debug_Log("the location of vertPos attribute in the shader is " << glGetAttribLocation(m_program.getID(), "vertPos")); 
-	Debug_Log("the location of vertColor attribute in the shader is " << glGetAttribLocation(m_program.getID(), "vertColor")); 
+	Debug_Log("the location of vertexPos attribute in the shader is " << glGetAttribLocation(m_program.getID(), "vertexPos")); 
 	// expected output is vertPos location = 0 and vertColor location = 1, just as specified in the shader.
-
+	Debug_Log("the location of vertexColor attribute in the shader is " << glGetAttribLocation(m_program.getID(), "vertexColor"));
 	
+	int v;
+	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &v);
+	Debug_Log("max vertex attribs" << v);
 
 	GLuint m_vao;
 	glGenVertexArrays(1, &m_vao);
@@ -59,8 +61,11 @@ int main()
 	//Debug_Log(sizeof(vertecies));
 	Vertex verts[3];
 	verts[0].setPosition(0.0f, 1.0f, 0.0f);
+	verts[0].setColor(Color8(255, 0, 0));
 	verts[1].setPosition(1.0f, 0.0f, 0.0f);
+	verts[1].setColor(Color8(255, 0, 0));
 	verts[2].setPosition(0.0f, 0.0f, 0.0f);
+	verts[2].setColor(Color8(255, 255, 0));
 	Debug_Log(sizeof(verts));
 	Debug_Log(sizeof(Vertex));
 	GLuint m_vbo;
@@ -68,14 +73,16 @@ int main()
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
 	
-	m_program.addAttribute("vertPos", 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex,position));
-	glEnableVertexAttribArray(glGetAttribLocation(m_program.getID(), "vertColor")); ///< crashing the program.
-	glm::mat4 proj, view, model;
+	glUseProgram(m_program.getID()); 
+	m_program.addAttribute("vertexPos", 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex,position));
+	m_program.addAttribute("vertexColor", 3, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, color));
 
-	m_program.uploadUniformMatrix("projection", 1, proj, GL_FALSE);
-	m_program.uploadUniformMatrix("view", 1, view, GL_FALSE);
-	m_program.uploadUniformMatrix("model", 1, model, GL_FALSE);
-
+	glm::mat4 projection; /*= glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);*/
+	glm::mat4 view; /*glm::lookAt(glm::vec3(0.0, -5.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 1.0));*/
+	glm::mat4 model;/* = glm::mat4(1.0f);*/
+	glm::mat4 MVP = projection * view * model;
+	GLint mvpLocation = glGetUniformLocation(m_program.getID(), "MVP");
+	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, glm::value_ptr(MVP));
 
 	while (!m_window.shouldWindowClose()) // The game loop.
 	{
@@ -87,11 +94,12 @@ int main()
 		}
 		glClearColor(0.0f, 1.0f, 1.0f, 1.0f); // set the background color
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		//Debug_Log(m_window.getFramesPerSecond()); // Log the fps, use when you need to actually check the fps
-		m_program.use();
+		
+		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
-
-		m_program.unuse();
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
 
 		m_window.update(); // Update the window.
 	}
