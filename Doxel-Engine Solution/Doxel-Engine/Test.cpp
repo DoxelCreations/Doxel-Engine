@@ -51,16 +51,16 @@ int main()
 
 	Vertex verts[6];
 	verts[0].setPosition(0.0f, 1.0f, 0.0f);
-	verts[0].setColor(Color8(255, 0, 0));
+	verts[0].setColor(Color8(255, 255, 0));
 	verts[1].setPosition(1.0f, 0.0f, 0.0f);
-	verts[1].setColor(Color8(0, 0, 255));
+	verts[1].setColor(Color8(255, 0, 255));
 	verts[2].setPosition(0.0f, 0.0f, 0.0f);
 	verts[2].setColor(Color8(0, 255, 0));
 	verts[3].setPosition(1.0f, 0.0f, 0.0f);
 	verts[3].setColor(Color8(0, 0, 255));
-	verts[4].setPosition(0.0f, 0.0f, 0.0f);
-	verts[4].setColor(Color8(0, 255, 0));
-	verts[5].setPosition(1.0f, 1.0f, 0.0f);
+	verts[4].setPosition(1.0f, 1.0f, 0.0f);
+	verts[4].setColor(Color8(0, 255, 255));
+	verts[5].setPosition(0.0f, 1.0f, 0.0f);
 	verts[5].setColor(Color8(255, 0, 0));
 
 	
