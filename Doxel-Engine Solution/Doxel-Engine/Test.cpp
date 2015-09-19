@@ -48,20 +48,44 @@ int main()
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
 
-	Vertex verts[3];
+
+	Vertex verts[6];
 	verts[0].setPosition(0.0f, 1.0f, 0.0f);
 	verts[0].setColor(Color8(255, 0, 0));
 	verts[1].setPosition(1.0f, 0.0f, 0.0f);
-	verts[1].setColor(Color8(255, 0, 0));
+	verts[1].setColor(Color8(0, 0, 255));
 	verts[2].setPosition(0.0f, 0.0f, 0.0f);
-	verts[2].setColor(Color8(255, 255, 0));
+	verts[2].setColor(Color8(0, 255, 0));
+	verts[3].setPosition(1.0f, 0.0f, 0.0f);
+	verts[3].setColor(Color8(0, 0, 255));
+	verts[4].setPosition(0.0f, 0.0f, 0.0f);
+	verts[4].setColor(Color8(0, 255, 0));
+	verts[5].setPosition(1.0f, 1.0f, 0.0f);
+	verts[5].setColor(Color8(255, 0, 0));
+
+	
 	Debug_Log(sizeof(verts));
 	Debug_Log(sizeof(Vertex));
+
 	GLuint m_vbo;
 	glGenBuffers(1, &m_vbo);
+	Debug_Log("The buffer number is " << m_vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+
+	/*
+
+	VERTEX:1
+		POSITION - 1 
+		COLOR - 1
+		TEXTURE-COORD -1 
+	VERTEX:2
+		POSITION-1
+		COLOR-1
+		TEXTURE-COORD-1
 	
+	*/
+
 	glUseProgram(m_program.getID()); 
 	m_program.addAttribute("vertexPos", 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex,position));
 	m_program.addAttribute("vertexColor", 3, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, color));
@@ -81,12 +105,12 @@ int main()
 		{	
 			m_window.setWindowClose(); // Close the window if you press the escape button.
 		}
-		glClearColor(0.0f, 1.0f, 1.0f, 1.0f); // set the background color
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // set the background color
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
 
