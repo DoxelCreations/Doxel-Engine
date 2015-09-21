@@ -12,9 +12,14 @@ Defines the data structure for the engine.
 #include <glm\glm.hpp>
 
 
-struct Position // the position struct
+struct Position3D // the position struct
 {
 	float x, y, z;
+};
+
+struct Position2D
+{
+	float x, y;
 };
 
 struct Color8 // the color struct
@@ -33,9 +38,9 @@ struct TexCoord // the tex coordinations struct
 };
 
 
-struct Vertex // the vertex struct, combines all the previus structs. 
+struct Vertex3D // the vertex struct, combines all the previus structs. 
 {
-	Position position;
+	Position3D position;
 	Color8   color;
 	TexCoord texCoord;
 
@@ -61,4 +66,33 @@ struct Vertex // the vertex struct, combines all the previus structs.
 		texCoord.y = tex.y;
 	}
 };
+
+struct Vertex2D // the vertex struct, combines all the previus structs. 
+{
+	Position2D position;
+	Color8   color;
+	TexCoord texCoord;
+
+	void setPosition(glm::vec2 pos) // set the position to a glm::vec3 
+	{
+		position.x = pos.x;
+		position.y = pos.y;
+	}
+	void setPosition(float x, float y)
+	{
+		position.x = x;
+		position.y = y;
+	}
+	void setColor(Color8 col) // set the color to a specific color
+	{
+		color = col;
+	}
+	void setTexCoord(glm::vec2 tex) // set the tex coord to glm::vec2
+	{
+		texCoord.x = tex.x;
+		texCoord.y = tex.y;
+	}
+};
+
+
 
