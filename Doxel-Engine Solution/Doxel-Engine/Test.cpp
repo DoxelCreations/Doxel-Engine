@@ -49,7 +49,7 @@ int main()
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
 
-	Vertex verts[6];
+	Vertex3D verts[6];
 	verts[0].setPosition(0.0f, 1.0f, 0.0f);
 	verts[0].setColor(Color8(255, 255, 0));
 	verts[1].setPosition(1.0f, 0.0f, 0.0f);
@@ -65,7 +65,7 @@ int main()
 
 	
 	Debug_Log("size of vertecies" << sizeof(verts));
-	Debug_Log(sizeof(Vertex));
+	Debug_Log(sizeof(Vertex3D));
 
 
 	GLuint m_vbo; ///< this is the vertex buffer object.
@@ -87,8 +87,8 @@ int main()
 	*/
 
 	//glUseProgram(m_program.getID()); 
-	m_program.addAttribute("vertexPos", 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex,position));
-	m_program.addAttribute("vertexColor", 3, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, color));
+	m_program.addAttribute("vertexPos", 3, GL_FLOAT, GL_FALSE, sizeof(Vertex3D), (void*)offsetof(Vertex3D,position));
+	m_program.addAttribute("vertexColor", 3, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex3D), (void*)offsetof(Vertex3D, color));
 
 	glm::mat4 projection; /*= glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);*/
 	glm::mat4 view; /*glm::lookAt(glm::vec3(0.0, -5.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 1.0));*/
