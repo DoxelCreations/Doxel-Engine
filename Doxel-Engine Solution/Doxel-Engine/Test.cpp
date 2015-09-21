@@ -9,13 +9,14 @@ that means that Vertex.h should be included before Window.h.
 
 */
 
+#include <cstddef>
+#include <glm\gtc\type_ptr.hpp>
+
 #include "Vertex.h" 
 #include "Window.h"
 #include "SimpleErrors.h"
 #include "InputManager.h"
 #include "GLProgram.h"
-#include "Camera3D.h"
-#include <cstddef>
 
 const int WINDOW_WITDH = 1200; // the window's width
 const int WINDOW_HEIGHT = 900; // the window's height
@@ -44,10 +45,9 @@ int main()
 	GLProgram m_program;// Create a GLProgram object for debug purposes
 	m_program.loadShaders("Shaders/Shader.vert", "Shaders/Shader.frag"); // test if the shaders compile
 
-	GLuint m_vao;
+	GLuint m_vao; /// this is the vertex array object, unimportant for now, and the program can run without it.
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
-
 
 	Vertex verts[6];
 	verts[0].setPosition(0.0f, 1.0f, 0.0f);
@@ -64,12 +64,12 @@ int main()
 	verts[5].setColor(Color8(255, 0, 0));
 
 	
-	Debug_Log(sizeof(verts));
+	Debug_Log("size of vertecies" << sizeof(verts));
 	Debug_Log(sizeof(Vertex));
 
-	GLuint m_vbo;
+
+	GLuint m_vbo; ///< this is the vertex buffer object.
 	glGenBuffers(1, &m_vbo);
-	Debug_Log("The buffer number is " << m_vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
 
@@ -86,7 +86,7 @@ int main()
 	
 	*/
 
-	glUseProgram(m_program.getID()); 
+	//glUseProgram(m_program.getID()); 
 	m_program.addAttribute("vertexPos", 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex,position));
 	m_program.addAttribute("vertexColor", 3, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, color));
 
@@ -108,11 +108,9 @@ int main()
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // set the background color
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
+		m_program.use();
 		glDrawArrays(GL_TRIANGLES, 0, 6);
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
+		m_program.unuse();
 
 		m_window.update(); // Update the window.
 	}

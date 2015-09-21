@@ -39,7 +39,7 @@
     <ClCompile Include="Camera3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="basicDraw.cpp">
+    <ClCompile Include="BasicDraw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,7 +71,7 @@
     <ClInclude Include="Camera3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="basicDraw.h">
+    <ClInclude Include="BasicDraw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

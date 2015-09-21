@@ -55,9 +55,11 @@ void GLProgram::unuse() //disable the shader
 }
 void GLProgram::addAttribute(const char* attribName, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer) // add atrribute to the glsl prgoram
 {
+	glUseProgram(m_programID);
 	GLint attribPos = glGetAttribLocation(m_programID, attribName);
 	glEnableVertexAttribArray(attribPos);
 	glVertexAttribPointer(attribPos, size, type, normalized, stride, pointer);
+	m_numAttribs++;
 }
 
 void GLProgram::uploadUniformMatrix(char* name, int num, glm::mat4 &mat, GLboolean transpose) // upload a uniform matrix to the shader.
