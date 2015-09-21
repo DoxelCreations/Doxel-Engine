@@ -2,22 +2,36 @@
 
 FILE DESCRIPTION
 
-A simple draw class to test draw.
+A basic draw class header to draw things.
 
-TODO: complete.
 */
 #pragma once
 #include <GL\glew.h>
+#include "Vertex.h"
 
-class basicDraw
+class BasicDraw
 {
 public:
-	basicDraw();
-	~basicDraw();
+	BasicDraw();
+	~BasicDraw();
 
-	//void gen
+	/*This function initialize the BasicDraw class*/
+	void init();
+	/*
+	send vertecies to the buffer
+	Doesnt work as of now, need to be remade.
+	*/
+	void sendVertecies(Vertex verts, GLenum drawMode);
+	/*draw function*/
+	void draw(GLint numOfVertecies, GLsizei start);
+	/*Terminate function*/
+	void terminate();
 private:
-	GLuint m_vao;
-	GLuint m_vbo;
+	/* the vertex array object*/
+	GLuint m_vao = 0;
+	/* the vertex buffer object*/
+	GLuint m_vbo = 0;
+
+
 };
 
