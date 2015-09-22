@@ -36,7 +36,7 @@ void BasicDraw::init()
 	}
 }
 
-void BasicDraw::sendVertecies(Vertex verts, GLenum drawMode)
+void BasicDraw::sendVertecies(Vertex2D verts, GLenum drawMode)
 {
 	if (m_vbo)
 	{

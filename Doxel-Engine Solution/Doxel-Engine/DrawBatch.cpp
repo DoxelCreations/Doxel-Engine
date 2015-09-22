@@ -1,11 +1,11 @@
 #include "DrawBatch.h"
 
 
-DrawBatch::DrawBatch()
+DrawBatch2D::DrawBatch()
 {
 }
 
 
-DrawBatch::~DrawBatch()
+DrawBatch2D::~DrawBatch()
 {
 }

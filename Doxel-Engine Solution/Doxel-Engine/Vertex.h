@@ -36,44 +36,77 @@ struct TexCoord // the tex coordinations struct
 {
 	float x, y;
 };
-
-
-struct Vertex3D // the vertex struct, combines all the previus structs. 
+/*
+The basic Vertex class that other Vertex classes derive from
+*/
+class Vertex
 {
-	Position3D position;
-	Color8   color;
-	TexCoord texCoord;
+public:
+	
+	Vertex()
+	{
+		/* default empty constructor */
+	};
+	~Vertex()
+	{
+		/* default empty destructor */
+	};
+	virtual void setColor(Color8 col) // set the color to a specific color
+	{
+		color = col;
+	}
+	virtual void setTexCoord(glm::vec2 tex) // set the tex coord to glm::vec2
+	{
+		texCoord.x = tex.x;
+		texCoord.y = tex.y;
+	}
+	virtual void setPosition();
+	virtual void setPosition(glm::vec2);
+	virtual void setPosition(glm::vec3);
+	virtual void setPosition(float x, float y);
+	virtual void setPosition(float x, float y, float z);
+	
 
-	void setPosition(glm::vec3 pos) // set the position to a glm::vec3 
+	Color8 color;
+	TexCoord texCoord;
+protected:
+private:
+};
+
+
+
+/*
+The 3D Vertex class
+*/
+class Vertex3D  : public Vertex // the vertex struct, combines all the previus structs. 
+{
+public:
+	Position3D position;
+
+	void setPosition(glm::vec3 pos)  // set the position to a glm::vec3 
 	{
 		position.x = pos.x;
 		position.y = pos.y;
 		position.z = pos.z;
-	}
+	} 
 	void setPosition(float x, float y, float z)
 	{
 		position.x = x;
 		position.y = y;
 		position.z = z;
 	}
-	void setColor(Color8 col) // set the color to a specific color
-	{
-		color = col;
-	}
-	void setTexCoord(glm::vec2 tex) // set the tex coord to glm::vec2
-	{
-		texCoord.x = tex.x;
-		texCoord.y = tex.y;
-	}
+protected:
+private:
 };
-
-struct Vertex2D // the vertex struct, combines all the previus structs. 
+/*
+The 2D Vertex class
+*/
+class Vertex2D : public Vertex // the vertex2D class, combines all the previus structs. 
 {
+public:
 	Position2D position;
-	Color8   color;
-	TexCoord texCoord;
 
-	void setPosition(glm::vec2 pos) // set the position to a glm::vec3 
+	void setPosition(glm::vec2 pos) // set the position to a glm::vec2 
 	{
 		position.x = pos.x;
 		position.y = pos.y;
@@ -83,16 +116,10 @@ struct Vertex2D // the vertex struct, combines all the previus structs.
 		position.x = x;
 		position.y = y;
 	}
-	void setColor(Color8 col) // set the color to a specific color
-	{
-		color = col;
-	}
-	void setTexCoord(glm::vec2 tex) // set the tex coord to glm::vec2
-	{
-		texCoord.x = tex.x;
-		texCoord.y = tex.y;
-	}
+protected:
+private:
 };
+
 
 
 
