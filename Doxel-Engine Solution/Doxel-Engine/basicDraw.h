@@ -21,7 +21,7 @@ public:
 	send vertecies to the buffer
 	Doesnt work as of now, need to be remade.
 	*/
-	void sendVertecies(Vertex verts, GLenum drawMode);
+	void sendVertecies(Vertex2D verts, GLenum drawMode);
 	/*draw function*/
 	void draw(GLint numOfVertecies, GLsizei start);
 	/*Terminate function*/
