@@ -12,6 +12,11 @@ Defines the data structure for the engine.
 #include <glm\glm.hpp>
 
 
+enum VERTEX_TYPES
+{
+	VERTEX, VERTEX_2D, VERTEX_3D, NUM_TYPES
+};
+
 struct Position3D // the position struct
 {
 	float x, y, z;

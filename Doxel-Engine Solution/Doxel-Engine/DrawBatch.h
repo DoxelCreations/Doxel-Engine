@@ -26,11 +26,31 @@ public:
 	/* Default destructor*/
 	~Glyph()
 	{
-		delete []m_vertecies;
-		m_vertecies = nullptr;
+		delete []vertecies;
+		vertecies = nullptr;
+	}
+	
+	void createVertecies(int numVertecies, VERTEX_TYPES type)
+	{
+		switch (type)
+		{
+		case VERTEX:
+			vertecies = new Vertex[numVertecies];
+			break;
+		case VERTEX_2D:
+			vertecies = new Vertex2D[numVertecies];
+			break;
+		case VERTEX_3D:
+			vertecies = new Vertex3D[numVertecies];
+			break;
+		case NUM_TYPES:
+			break;
+		default:
+			break;
+		}
 	}
 
-	Vertex *m_vertecies = nullptr;
+	Vertex *vertecies = nullptr;
 
 };
 
@@ -44,24 +64,26 @@ class Glyph2D : public Glyph
 		/*empty*/
 	};
 
-	/* constructor that sets position and one color for all vertecies*/
-	Glyph2D(glm::vec2 pos, glm::vec2 scale, Color8 color)
-	{
-		m_vertecies = new Vertex2D[4];
 
+	/* constructor that sets position and one color for all vertecies*/
+	Glyph2D(glm::vec2 &position, glm::vec2 &scale, Color8 color)
+	{
+		createVertecies(4, VERTEX_TYPES::VERTEX_2D);
 		for (int i = 0; i < 4; i++)
 		{
 			vertecies[i].setColor(color);
 		}
-		m_vertecies[0].setPosition(pos.x, pos.y);
-		m_vertecies[1].setPosition(pos.x + scale.x, pos.y);
-		m_vertecies[2].setPosition(pos.x, pos.y + scale.y);
-		m_vertecies[3].setPosition(pos.x + scale.x, pos.y + scale.y);
+		vertecies[0].setPosition(position.x, position.y);
+		vertecies[1].setPosition(position.x + scale.x, position.y);
+		vertecies[2].setPosition(position.x, position.y + scale.y);
+		vertecies[3].setPosition(position.x + scale.x, position.y + scale.y);
 
 	};
 	/* constructor that sets position and a color for each of the vertecies*/
-	Glyph2D(glm::vec2 position, glm::vec2 scale, Color8 color[4])
+	Glyph2D(glm::vec2 &position, glm::vec2 &scale, Color8 color[4])
 	{
+		createVertecies(4, VERTEX_TYPES::VERTEX_2D);
+
 		for (int i = 0; i < 4; i++)
 		{
 			vertecies[i].setColor(color[i]);
@@ -74,8 +96,10 @@ class Glyph2D : public Glyph
 	};
 
 	/* constructor that sets position and texture coord*/
-	Glyph2D(glm::vec2 position, glm::vec2 scale, glm::vec2 texCoord)
+	Glyph2D(glm::vec2 &position, glm::vec2 &scale, glm::vec2 &texCoord)
 	{
+		createVertecies(4, VERTEX_TYPES::VERTEX_2D);
+
 		vertecies[0].setPosition(position.x, position.y);
 		vertecies[1].setPosition(position.x + scale.x, position.y);
 		vertecies[2].setPosition(position.x, position.y + scale.y);
@@ -87,8 +111,10 @@ class Glyph2D : public Glyph
 	};
 
 	/* constructor that sets position, texture coord and a single color*/
-	Glyph2D(glm::vec2 position, glm::vec2 scale, glm::vec2 texCoord, Color8 color)
+	Glyph2D(glm::vec2 &position, glm::vec2 &scale, glm::vec2 &texCoord, Color8 color)
 	{
+		createVertecies(4, VERTEX_TYPES::VERTEX_2D);
+
 		for (int i = 0; i < 4; i++)
 		{
 			vertecies[i].setColor(color);
@@ -105,8 +131,10 @@ class Glyph2D : public Glyph
 	};
 
 	/* constructor that sets position, texture coord and a color for each of the vertecies*/
-	Glyph2D(glm::vec2 position, glm::vec2 scale, glm::vec2 texCoord, Color8 color[4])
+	Glyph2D(glm::vec2 &position, glm::vec2 &scale, glm::vec2 &texCoord, Color8 color[4])
 	{
+		createVertecies(4, VERTEX_TYPES::VERTEX_2D);
+
 		for (int i = 0; i < 4; i++)
 		{
 			vertecies[i].setColor(color[i]);
@@ -121,8 +149,24 @@ class Glyph2D : public Glyph
 		*/
 
 	};
-	/* NOTE: check if its better to pass a reference to the glm::vec2 objects, instead of copying the whole vector.*/
-	Vertex2D vertecies[4];
+
+};
+
+class Glyph3D : public Glyph
+{
+	Glyph3D()
+	{
+
+	};
+	/*
+	position scale and one color constructor
+	*/
+	Glyph3D(glm::vec3 &position, glm::vec3 &scale, Color8 color)
+	{
+		createVertecies(8, VERTEX_TYPES::VERTEX_3D);
+	};
+
+
 
 };
 
