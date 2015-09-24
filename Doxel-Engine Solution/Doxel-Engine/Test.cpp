@@ -49,18 +49,18 @@ int main()
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
 
-	Vertex3D verts[6];
-	verts[0].setPosition(0.0f, 1.0f, 0.0f);
+	Vertex2D verts[6];
+	verts[0].setPosition(0.0f, 1.0f);
 	verts[0].setColor(Color8(255, 255, 0));
-	verts[1].setPosition(1.0f, 0.0f, 0.0f);
+	verts[1].setPosition(1.0f, 0.0f);
 	verts[1].setColor(Color8(255, 0, 255));
-	verts[2].setPosition(0.0f, 0.0f, 0.0f);
+	verts[2].setPosition(0.0f, 0.0f);
 	verts[2].setColor(Color8(0, 255, 0));
-	verts[3].setPosition(1.0f, 0.0f, 0.0f);
+	verts[3].setPosition(1.0f, 0.0f);
 	verts[3].setColor(Color8(0, 0, 255));
-	verts[4].setPosition(1.0f, 1.0f, 0.0f);
+	verts[4].setPosition(1.0f, 1.0f);
 	verts[4].setColor(Color8(0, 255, 255));
-	verts[5].setPosition(0.0f, 1.0f, 0.0f);
+	verts[5].setPosition(0.0f, 1.0f);
 	verts[5].setColor(Color8(255, 0, 0));
 
 	
@@ -87,8 +87,8 @@ int main()
 	*/
 
 	//glUseProgram(m_program.getID()); 
-	m_program.addAttribute("vertexPos", 3, GL_FLOAT, GL_FALSE, sizeof(Vertex3D), (void*)offsetof(Vertex3D,position));
-	m_program.addAttribute("vertexColor", 3, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex3D), (void*)offsetof(Vertex3D, color));
+	m_program.addAttribute("vertexPos", 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (void*)offsetof(Vertex2D,position));
+	m_program.addAttribute("vertexColor", 3, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex2D), (void*)offsetof(Vertex2D, color));
 
 	glm::mat4 projection; /*= glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);*/
 	glm::mat4 view; /*glm::lookAt(glm::vec3(0.0, -5.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 1.0));*/

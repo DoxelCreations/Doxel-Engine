@@ -74,7 +74,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BasicDraw.cpp" />
     <ClCompile Include="Camera3D.cpp" />
     <ClCompile Include="DrawBatch.cpp" />
     <ClCompile Include="FpsCounter.cpp" />
@@ -85,7 +84,6 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BasicDraw.h" />
     <ClInclude Include="Camera3D.h" />
     <ClInclude Include="DrawBatch.h" />
     <ClInclude Include="FpsCounter.h" />

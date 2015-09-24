@@ -39,9 +39,6 @@
     <ClCompile Include="Camera3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BasicDraw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -69,9 +66,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Camera3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicDraw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GLTexture.h">
