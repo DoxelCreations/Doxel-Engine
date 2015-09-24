@@ -74,5 +74,8 @@
     <ClInclude Include="BasicDraw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GLTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,6 +15,14 @@ Decide if we are gonna use polymorphism for vertexes and glyphs
 #include "Vertex.h"
 #include "Camera3D.h"
 
+enum class GlyphSortType
+{
+	NONE,
+	TEXTURE,
+	/* TO THINK ABOUT: OTHER SORTING IDEAS*/
+
+};
+
 class Glyph
 {
 public:
@@ -49,12 +57,14 @@ public:
 			break;
 		}
 	}
+	GLuint getTexture() { return m_texture; }
 
-	Vertex *vertecies = nullptr;
+	Vertex *vertecies = nullptr; // TODO: check if should be classified as protected
+protected:
+	GLuint m_texture;
+private:
 
 };
-
-
 
 class Glyph2D : public Glyph
 {
@@ -96,8 +106,9 @@ class Glyph2D : public Glyph
 	};
 
 	/* constructor that sets position and texture coord*/
-	Glyph2D(glm::vec2 &position, glm::vec2 &scale, glm::vec2 &texCoord)
+	Glyph2D(glm::vec2 &position, glm::vec2 &scale, glm::vec4 &texCoord, GLuint texture) 
 	{
+		m_texture = texture;
 		createVertecies(4, VERTEX_TYPES::VERTEX_2D);
 
 		vertecies[0].setPosition(position.x, position.y);
@@ -105,14 +116,18 @@ class Glyph2D : public Glyph
 		vertecies[2].setPosition(position.x, position.y + scale.y);
 		vertecies[3].setPosition(position.x + scale.x, position.y + scale.y);
 		
-		/*
-		TODO: add tex coord mapping on vertex
-		*/
+		vertecies[0].setTexCoord(texCoord.x, texCoord.y);
+		vertecies[1].setTexCoord(texCoord.x + texCoord.z, texCoord.y);
+		vertecies[2].setTexCoord(texCoord.x, texCoord.y + texCoord.w);
+		vertecies[3].setTexCoord(texCoord.x + texCoord.z, texCoord.y + texCoord.w);
+
+	
 	};
 
-	/* constructor that sets position, texture coord and a single color*/
-	Glyph2D(glm::vec2 &position, glm::vec2 &scale, glm::vec2 &texCoord, Color8 color)
+	/* constructor that sets position, texture coord, a texture id and a single color*/
+	Glyph2D(glm::vec2 &position, glm::vec2 &scale, glm::vec4 &texCoord, GLuint texture, Color8 color)
 	{
+		m_texture = texture;
 		createVertecies(4, VERTEX_TYPES::VERTEX_2D);
 
 		for (int i = 0; i < 4; i++)
@@ -124,15 +139,20 @@ class Glyph2D : public Glyph
 		vertecies[1].setPosition(position.x + scale.x, position.y);
 		vertecies[2].setPosition(position.x, position.y + scale.y);
 		vertecies[3].setPosition(position.x + scale.x, position.y + scale.y);
-		/*
-				TODO: add tex coord mapping on vertex
-		*/
+		
+		vertecies[0].setTexCoord(texCoord.x, texCoord.y);
+		vertecies[1].setTexCoord(texCoord.x + texCoord.z, texCoord.y);
+		vertecies[2].setTexCoord(texCoord.x, texCoord.y + texCoord.w);
+		vertecies[3].setTexCoord(texCoord.x + texCoord.z, texCoord.y + texCoord.w);
+
+	
 
 	};
 
 	/* constructor that sets position, texture coord and a color for each of the vertecies*/
-	Glyph2D(glm::vec2 &position, glm::vec2 &scale, glm::vec2 &texCoord, Color8 color[4])
+	Glyph2D(glm::vec2 &position, glm::vec2 &scale, glm::vec4 &texCoord, GLuint texture, Color8 color[4])
 	{
+		m_texture = texture;
 		createVertecies(4, VERTEX_TYPES::VERTEX_2D);
 
 		for (int i = 0; i < 4; i++)
@@ -144,16 +164,24 @@ class Glyph2D : public Glyph
 		vertecies[1].setPosition(position.x + scale.x, position.y);
 		vertecies[2].setPosition(position.x, position.y + scale.y);
 		vertecies[3].setPosition(position.x + scale.x, position.y + scale.y);
-		/*
-		TODO: add tex coord mapping on vertex
-		*/
+	
+		vertecies[0].setTexCoord(texCoord.x, texCoord.y);
+		vertecies[1].setTexCoord(texCoord.x + texCoord.z, texCoord.y);
+		vertecies[2].setTexCoord(texCoord.x, texCoord.y + texCoord.w);
+		vertecies[3].setTexCoord(texCoord.x + texCoord.z, texCoord.y + texCoord.w);
+
 
 	};
+private:
 
 };
 
+
+
 class Glyph3D : public Glyph
 {
+
+
 	Glyph3D()
 	{
 
@@ -164,6 +192,40 @@ class Glyph3D : public Glyph
 	Glyph3D(glm::vec3 &position, glm::vec3 &scale, Color8 color)
 	{
 		createVertecies(8, VERTEX_TYPES::VERTEX_3D);
+
+		for (int i = 0; i < 8; i++)
+		{
+			vertecies[i].setColor(color);
+		}
+
+		vertecies[0].setPosition(position.x, position.y, position.z);
+		vertecies[1].setPosition(position.x + scale.x, position.y, position.z);
+		vertecies[2].setPosition(position.x, position.y + scale.y, position.z);
+		vertecies[3].setPosition(position.x + scale.x, position.y + scale.y, position.z);
+		vertecies[4].setPosition(position.x, position.y, position.z + scale.z);
+		vertecies[5].setPosition(position.x + scale.x, position.y, position.z + scale.z);
+		vertecies[6].setPosition(position.x, position.y + scale.y, position.z + scale.z);
+		vertecies[7].setPosition(position.x + scale.x, position.y + scale.y, position.z + scale.z);
+		
+	};
+	Glyph3D(glm::vec3 &position, glm::vec3 &scale, Color8 color[8])
+	{
+		createVertecies(8, VERTEX_TYPES::VERTEX_3D);
+
+		for (int i = 0; i < 8; i++)
+		{
+			vertecies[i].setColor(color[i]);
+		}
+
+		vertecies[0].setPosition(position.x, position.y, position.z);
+		vertecies[1].setPosition(position.x + scale.x, position.y, position.z);
+		vertecies[2].setPosition(position.x, position.y + scale.y, position.z);
+		vertecies[3].setPosition(position.x + scale.x, position.y + scale.y, position.z);
+		vertecies[4].setPosition(position.x, position.y, position.z + scale.z);
+		vertecies[5].setPosition(position.x + scale.x, position.y, position.z + scale.z);
+		vertecies[6].setPosition(position.x, position.y + scale.y, position.z + scale.z);
+		vertecies[7].setPosition(position.x + scale.x, position.y + scale.y, position.z + scale.z);
+
 	};
 
 
@@ -189,6 +251,10 @@ public:
 };
 
 
+/* 
+TODO in DRAWBATCH
+EVERYTHING
+*/
 
 
 
@@ -221,6 +287,7 @@ private:
 	GLuint m_vbo, m_vao;
 
 	std::vector<Glyph2D> m_glyphs;
+	std::vector<Glyph3D> m_Glyph3D;
 	std::vector<RenderBatch> m_renderBatches;
 
 };

@@ -65,16 +65,27 @@ public:
 		texCoord.x = tex.x;
 		texCoord.y = tex.y;
 	}
+	virtual void setTexCoord(float x, float y)
+	{
+		texCoord.x = x;
+		texCoord.y = y;
+	}
+
 	virtual void setPosition();
 	virtual void setPosition(glm::vec2);
 	virtual void setPosition(glm::vec3);
 	virtual void setPosition(float x, float y);
 	virtual void setPosition(float x, float y, float z);
 	
+	virtual Position2D getPosition2D();
+	virtual Position3D getPosition3D();
 
+	virtual Color8 getColor() { return color; }
+	virtual TexCoord getTexCoord() { return texCoord; }
+
+protected:
 	Color8 color;
 	TexCoord texCoord;
-protected:
 private:
 };
 
@@ -83,10 +94,9 @@ private:
 /*
 The 3D Vertex class
 */
-class Vertex3D  : public Vertex // the vertex struct, combines all the previus structs. 
+class Vertex3D  : public Vertex  
 {
 public:
-	Position3D position;
 
 	void setPosition(glm::vec3 pos)  // set the position to a glm::vec3 
 	{
@@ -99,8 +109,13 @@ public:
 		position.x = x;
 		position.y = y;
 		position.z = z;
+
 	}
+
+	Position3D getPosition3D() { return this->position; }
+
 protected:
+	Position3D position;
 private:
 };
 /*
@@ -109,7 +124,6 @@ The 2D Vertex class
 class Vertex2D : public Vertex // the vertex2D class, combines all the previus structs. 
 {
 public:
-	Position2D position;
 
 	void setPosition(glm::vec2 pos) // set the position to a glm::vec2 
 	{
@@ -121,7 +135,10 @@ public:
 		position.x = x;
 		position.y = y;
 	}
+
+	Position2D getPosition2D() { return this->position; }
 protected:
+	Position2D position;
 private:
 };
 

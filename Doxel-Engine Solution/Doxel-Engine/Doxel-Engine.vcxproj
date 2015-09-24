@@ -90,6 +90,7 @@
     <ClInclude Include="DrawBatch.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="GLProgram.h" />
+    <ClInclude Include="GLTexture.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SimpleErrors.h" />
