@@ -227,7 +227,36 @@ class Glyph3D : public Glyph
 		vertecies[7].setPosition(position.x + scale.x, position.y + scale.y, position.z + scale.z);
 
 	};
+	Glyph3D(glm::vec3 &position, glm::vec3 &scale, glm::vec4 &texCoord, GLuint texture)
+	{
+		m_texture = texture;
 
+		createVertecies(8, VERTEX_TYPES::VERTEX_3D); 
+
+		vertecies[0].setPosition(position.x, position.y, position.z);
+		vertecies[1].setPosition(position.x + scale.x, position.y, position.z);
+		vertecies[2].setPosition(position.x, position.y + scale.y, position.z);
+		vertecies[3].setPosition(position.x + scale.x, position.y + scale.y, position.z);
+		vertecies[4].setPosition(position.x, position.y, position.z + scale.z);
+		vertecies[5].setPosition(position.x + scale.x, position.y, position.z + scale.z);
+		vertecies[6].setPosition(position.x, position.y + scale.y, position.z + scale.z);
+		vertecies[7].setPosition(position.x + scale.x, position.y + scale.y, position.z + scale.z);
+
+		/*
+		tex coord mapping is very, very wierd.
+		will only work for very, very wierd textures
+		will only show correctly on top and bottom squares.
+		*/
+		vertecies[0].setTexCoord(texCoord.x, texCoord.y);
+		vertecies[1].setTexCoord(texCoord.x + texCoord.z, texCoord.y);
+		vertecies[2].setTexCoord(texCoord.x, texCoord.y + texCoord.w);
+		vertecies[3].setTexCoord(texCoord.x + texCoord.z, texCoord.y + texCoord.w);
+		vertecies[4].setTexCoord(texCoord.x, texCoord.y);
+		vertecies[5].setTexCoord(texCoord.x + texCoord.z, texCoord.y);
+		vertecies[6].setTexCoord(texCoord.x, texCoord.y + texCoord.w);
+		vertecies[7].setTexCoord(texCoord.x + texCoord.z, texCoord.y + texCoord.w);
+
+	}
 
 
 };
@@ -258,11 +287,11 @@ EVERYTHING
 
 
 
-class DrawBatch2D
+class DrawBatch3D
 {
 public:
-	DrawBatch2D();
-	~DrawBatch2D();
+	DrawBatch3D();
+	~DrawBatch3D();
 
 	void init(Camera3D *camera);
 
@@ -270,8 +299,8 @@ public:
 	void end();
 
 	void draw(const glm::vec3 &position, const glm::vec3 &scale, Color8 color[8], bool overrideFrustum = false);
-	void draw(const glm::vec3 &position, const glm::vec3 &scale, Color8 &color, bool overrideFrustum = false);
-
+	void draw(const glm::vec3 &position, const glm::vec3 &scale, Color8 color, bool overrideFrustum = false);
+	void draw(const glm::vec3 &position, const glm::vec3 &scale, const glm::vec4 &texCoord, GLuint texture, bool overrideFrustum = false);
 	void renderBatch();
 
 	void dispose();
@@ -286,8 +315,7 @@ private:
 	Camera3D *m_camera;
 	GLuint m_vbo, m_vao;
 
-	std::vector<Glyph2D> m_glyphs;
-	std::vector<Glyph3D> m_Glyph3D;
+	std::vector<Glyph3D> m_glyphs;
 	std::vector<RenderBatch> m_renderBatches;
 
 };
